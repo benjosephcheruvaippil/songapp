@@ -11,3 +11,6 @@ class songdetail(models.Model):
     song_id=models.ForeignKey(song,on_delete=models.CASCADE)
     order=models.IntegerField()
     song_text=models.TextField(default="")
+
+    def __iter__(self):
+        return [self.song_id,self.order,self.song_text]

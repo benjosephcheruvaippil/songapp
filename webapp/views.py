@@ -7,6 +7,8 @@ from webapp.models import song,songdetail
 from django.http.response import JsonResponse
 from rest_framework.views import APIView
 
+from django.core import serializers
+
 # Create your views here.
 # def getsongs(request):
 #     songlist=song.objects.all()
@@ -18,6 +20,12 @@ class Song(APIView):
         songlist=song.objects.all()
         serializer=SongSerializer(songlist,many=True)
         return Response(serializer.data)
+        # songs=songdetail.objects.select_related('song_id').get(id=31)
+      
+        # serializer=SongDetailSerializer(songs,many=True)
+        # # data=serializers.serialize('json',songs,fields=('songname','song_text'))
+        # return JsonResponse(serializer.data,safe=False)
+
     
     def post(self,request,*args,**kwargs):
         song_data=request.data
@@ -37,7 +45,8 @@ class Song(APIView):
 
     def delete(self,request,*args,**kwargs):
         song_id=request.data["song_id"]
-        result=song.objects.filter(id=song_id).delete()
+        # result=song.objects.filter(id=song_id).delete()
+        result=song.objects.all().delete()
         print(result)
         return Response({"Record deleted successfully"})
 
@@ -56,3 +65,7 @@ class SongDetails(APIView):
         song_detail=songdetail.objects.all()
         serializer=SongDetailSerializer(song_detail,many=True)
         return Response(serializer.data)
+    
+    def delete(self,request,*args,**kwargs):
+        result=song.objects.delete()
+        return Response({"Record deleted successfully"})
