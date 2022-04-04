@@ -1,0 +1,1 @@
+web: gunicorn songapp.wsgi --log-file -
