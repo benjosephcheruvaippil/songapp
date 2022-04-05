@@ -1,4 +1,5 @@
 from dataclasses import fields
+from datetime import datetime
 from unittest import result
 from venv import create
 from django.http import HttpResponse
@@ -30,7 +31,7 @@ class Song(APIView):
     def post(self,request,*args,**kwargs):
         song_data=request.data
         new_song=song.objects.create(
-            songname=song_data["songname"],worship_date=song_data["worship_date"],updated_date=song_data["updated_date"]
+            songname=song_data["songname"],worship_date=song_data["worship_date"],updated_date=datetime.now()
         )
 
         serializer_song=SongSerializer(new_song)
@@ -61,7 +62,7 @@ def AddSongDetail(new_song,ordernum,songdetails):
 
 
 class SongDetails(APIView):
-    def get(self,request,*args,**kwargs):
+    def post(self,request,*args,**kwargs):
         songid=request.data["song_id"]
         songs=songdetail.objects.filter(song_id__id=songid).order_by('order').all()
         data=serializers.serialize('json',songs)
