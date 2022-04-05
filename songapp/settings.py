@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-5t&&eo#ewk&07t4%(b17bbv)9(v#owxbd(x8dj86gad4qk2+&e
 DEBUG = True
 
 ALLOWED_HOSTS = ['authentication-appdemo.herokuapp.com','127.0.0.1']
-
+CORS_ORIGIN_ALLOW_ALL = True
 
 # Application definition
 
@@ -38,10 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'corsheaders',
     'webapp',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
