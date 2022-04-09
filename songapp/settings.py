@@ -77,23 +77,23 @@ WSGI_APPLICATION = 'songapp.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'songapp',
-        'USER': 'ben',
-        'PASSWORD': 'benjoseph@1996',
-        'HOST': '172.107.32.116',
-        'PORT': '17020',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'songapp',
+#         'USER': 'ben',
+#         'PASSWORD': 'benjoseph@1996',
+#         'HOST': '172.107.32.116',
+#         'PORT': '17020',
+#     }
+# }
 
 
 # Password validation
